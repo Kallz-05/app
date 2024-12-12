@@ -4,18 +4,18 @@ import numpy as np
 
 # Inisialisasi session state untuk menu
 if 'menu' not in st.session_state:
-    st.session_state.menu = "Pengembang"
+    st.session_state.menu = "PENGEMBANG"
 
 # Sidebar navigasi menggunakan tombol
 st.sidebar.title("Menu")
-if st.sidebar.button("Pengembang"):
-    st.session_state.menu = "Pengembang"
+if st.sidebar.button("PENGEMBANG"):
+    st.session_state.menu = "PENGEMBANG"
 if st.sidebar.button("Aplikasi Manipulasi Gambar"):
     st.session_state.menu = "Aplikasi"
 
 # Logika menu
-if st.session_state.menu == "Pengembang":
-    st.markdown("<h1 style='text-align: center; font-size: 48px;'>Pengembang</h1>", unsafe_allow_html=True)
+if st.session_state.menu == "PENGEMBANG":
+    st.markdown("<h1 style='text-align: center; font-size: 48px;'>PENGEMBANG</h1>", unsafe_allow_html=True)
     st.markdown("<h2 style='text-align: center; font-size: 24px;'>Muhammad Fikry Haikal</h2>", unsafe_allow_html=True)
 
     # Menambahkan foto pengembang dari file lokal
