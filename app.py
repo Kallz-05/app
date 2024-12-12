@@ -12,8 +12,8 @@ st.session_state.menu = st.sidebar.radio("", ["Pengembang", "Aplikasi Manipulasi
 
 # Logika menu
 if st.session_state.menu == "Pengembang":
-    st.markdown("<h1 style='text-align: center; font-size: 48px;'>Pengembang</h1>", unsafe_allow_html=True)
-    st.markdown("<h2 style='text-align: center; font-size: 24px;'>Muhammad Fikry Haikal</h2>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; font-size: 48px;'>PENGEMBANG</h1>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; font-size: 24px;'>MUHAMMAD FIKRY HAIKAL</h2>", unsafe_allow_html=True)
 
     # Menambahkan foto pengembang dari file lokal
     st.image("fikry.jpg", caption="Foto Muhammad Fikry Haikal", use_container_width=True)
@@ -43,8 +43,10 @@ elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
 
             # Slider untuk memperbesar dan memperkecil gambar
             scale_factor = st.slider("Scale Factor", min_value=0.1, max_value=3.0, value=1.0, step=0.1)
-            scaled_image = cv2.resize(image, None, fx=scale_factor, fy=scale_factor, interpolation=cv2.INTER_LINEAR)
-            st.image(scaled_image, caption=f"Scaled Image (Factor: {scale_factor})", channels="BGR")
+            new_width = int(cols * scale_factor)
+            new_height = int(rows * scale_factor)
+            scaled_image = cv2.resize(image, (new_width, new_height), interpolation=cv2.INTER_LINEAR)
+            st.image(scaled_image, caption=f"Scaled Image (Factor: {scale_factor})", channels="BGR", use_container_width=True)
 
             # Slider untuk translasi
             tx = st.slider("Translation X", min_value=-100, max_value=100, value=50)
