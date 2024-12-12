@@ -42,7 +42,7 @@ elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
             st.image(rotated_image, caption=f"Rotated Image (Angle: {angle}°)", channels="BGR", use_container_width=True)
 
             # Slider untuk memperbesar dan memperkecil gambar
-            scale_factor = st.slider("Scale Factor", min_value=0.1, max_value=3.0, value=3.0, step=0.05)
+            scale_factor = st.slider("Scale Factor", min_value=0.1, max_value=2.0, value=0.4, step=0.1)
             scaled_image = cv2.resize(image, None, fx=scale_factor, fy=scale_factor, interpolation=cv2.INTER_LINEAR)
             st.image(scaled_image, caption=f"Scaled Image (Factor: {scale_factor})", channels="BGR")
 
