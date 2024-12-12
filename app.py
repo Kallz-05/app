@@ -4,24 +4,22 @@ import numpy as np
 
 # Inisialisasi session state untuk menu
 if 'menu' not in st.session_state:
-    st.session_state.menu = "PENGEMBANG"
+    st.session_state.menu = "Nama Pengembang"
 
-# Sidebar navigasi menggunakan tombol
+# Sidebar untuk navigasi
 st.sidebar.title("Menu")
-if st.sidebar.button("PENGEMBANG"):
-    st.session_state.menu = "PENGEMBANG"
-if st.sidebar.button("Aplikasi Manipulasi Gambar"):
-    st.session_state.menu = "Aplikasi"
+menu_option = st.sidebar.radio("Pilih Menu", ["Nama Pengembang", "Aplikasi Manipulasi Gambar"], index=0)
+st.session_state.menu = menu_option
 
 # Logika menu
-if st.session_state.menu == "PENGEMBANG":
-    st.markdown("<h1 style='text-align: center; font-size: 48px;'>PENGEMBANG</h1>", unsafe_allow_html=True)
-    st.markdown("<h2 style='text-align: center; font-size: 24px;'>Muhammad Fikry Haikal</h2>", unsafe_allow_html=True)
+if st.session_state.menu == "Nama Pengembang":
+    st.title("Nama Pengembang")
+    st.markdown("<h1 style='text-align: center; font-size: 36px;'>Muhammad Fikry Haikal</h1>", unsafe_allow_html=True)
 
     # Menambahkan foto pengembang dari file lokal
     st.image("fikry.jpg", caption="Foto Muhammad Fikry Haikal", use_container_width=True)
 
-elif st.session_state.menu == "Aplikasi":
+elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
     st.title("Aplikasi Manipulasi Gambar")
 
     # Upload file gambar
@@ -47,7 +45,7 @@ elif st.session_state.menu == "Aplikasi":
             # Slider untuk memperbesar dan memperkecil gambar
             scale_factor = st.slider("Scale Factor", min_value=0.1, max_value=3.0, value=1.0, step=0.1)
             scaled_image = cv2.resize(image, None, fx=scale_factor, fy=scale_factor, interpolation=cv2.INTER_LINEAR)
-            st.image(scaled_image, caption=f"Scaled Image (Factor: {scale_factor})", channels="BGR")
+            st.image(scaled_image, caption=f"Scaled Image (Factor: {scale_factor})", channels="BGR", use_container_width=True)
 
             # Slider untuk translasi
             tx = st.slider("Translation X", min_value=-100, max_value=100, value=50)
