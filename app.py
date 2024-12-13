@@ -69,7 +69,13 @@ elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
             st.image(rotated_image, caption=f"Rotated Image (Angle: {angle}°)", channels="BGR", use_container_width=True)
 
             # Slider untuk brightness
-            brightness = st.slider("Brightness", min_value=0, max_value=100, value=50)
+            brightness = st.slider("Brightness (From Dark to Light)", min_value=-100, max_value=100, value=0)
+
+            # Adjust brightness menggunakan alpha (kontras tetap 1)
+            alpha = 1.0  # Tidak mengubah kontras
+            bright_image = cv2.convertScaleAbs(image, alpha=alpha, beta=brightness)
+            st.image(bright_image, caption=f"Brightness Adjusted (Value: {brightness})", channels="BGR", use_container_width=True)
+
 
             # Adjust brightness dengan pengaturan gelap-terang
             bright_image = cv2.convertScaleAbs(image, alpha=1, beta=brightness - 50)
