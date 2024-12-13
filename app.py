@@ -89,7 +89,7 @@ elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
 
 
             # Slider untuk memperbesar dan memperkecil gambar
-            scale_factor = st.slider("Scale Factor", min_value=0.5, max_value=3.0, value=1.0, step=0.1)
+            scale_factor = st.slider("Scale Factor", min_value=0.1, max_value=3.0, value=1.0, step=0.1)
             
             # Pastikan scaling tidak membuat gambar terlalu kecil
             if scale_factor < 1.0:
