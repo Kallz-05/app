@@ -13,7 +13,11 @@ st.session_state.menu = st.sidebar.radio("", ["Home", "Pengembang", "Aplikasi Ma
 # Logika menu
 if st.session_state.menu == "Home":
     # Menampilkan gambar PU.png di menu Home dengan posisi tengah
-    st.markdown("<div style='text-align: center;'><img src='PU.png' style='width:50%;'></div>", unsafe_allow_html=True)
+    st.markdown("""
+    <div style="text-align: center;">
+        <img src="PU.png" alt="PU Logo" style="width:50%;">
+    </div>
+    """, unsafe_allow_html=True)
 
     # Menampilkan judul Linear Algebra
     st.markdown("<h1 style='text-align: center; font-size: 48px;'>Linear Algebra</h1>", unsafe_allow_html=True)
@@ -37,8 +41,12 @@ elif st.session_state.menu == "Pengembang":
     st.markdown("<h1 style='text-align: center; font-size: 48px;'>PENGEMBANG</h1>", unsafe_allow_html=True)
     st.markdown("<h2 style='text-align: center; font-size: 24px;'>MUHAMMAD FIKRY HAIKAL</h2>", unsafe_allow_html=True)
 
-    # Menambahkan foto pengembang dengan posisi tengah
-    st.markdown("<div style='text-align: center;'><img src='fikry.jpg' style='width:50%;'></div>", unsafe_allow_html=True)
+    # Menampilkan foto pengembang dari file lokal dengan posisi tengah
+    st.markdown("""
+    <div style="text-align: center;">
+        <img src="fikry.jpg" alt="Foto Pengembang" style="width:50%;">
+    </div>
+    """, unsafe_allow_html=True)
 
     # Kontak pengembang
     st.markdown("<h3>Contact:</h3>", unsafe_allow_html=True)
@@ -68,7 +76,7 @@ elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
             rotated_image = cv2.warpAffine(image, rotation_matrix, (cols, rows))
             st.image(rotated_image, caption=f"Rotated Image (Angle: {angle}°)", channels="BGR", use_container_width=True)
 
-            # Slider untuk brightness dengan pengaturan hitam total hingga sangat cerah
+            # Slider untuk brightness
             brightness = st.slider("Brightness", min_value=-255, max_value=255, value=0)
             bright_image = cv2.convertScaleAbs(image, alpha=1, beta=brightness)
             st.image(bright_image, caption=f"Brightness Adjusted (Value: {brightness})", channels="BGR", use_container_width=True)
