@@ -4,19 +4,40 @@ import numpy as np
 
 # Inisialisasi session state untuk menu
 if 'menu' not in st.session_state:
-    st.session_state.menu = "Pengembang"
+    st.session_state.menu = "Home"
 
 # Sidebar navigasi menggunakan radio button
 st.sidebar.title("Menu")
-st.session_state.menu = st.sidebar.radio("", ["Pengembang", "Aplikasi Manipulasi Gambar"], index=0)
+st.session_state.menu = st.sidebar.radio("", ["Home", "Pengembang", "Aplikasi Manipulasi Gambar"], index=0)
 
 # Logika menu
-if st.session_state.menu == "Pengembang":
+if st.session_state.menu == "Home":
+    st.markdown("<h1 style='text-align: center; font-size: 48px;'>Linear Algebra</h1>", unsafe_allow_html=True)
+    st.image("PU.png", caption="Gambar PU", use_container_width=True)
+    st.markdown("""
+    <h2>Deskripsi</h2>
+    <p>Aplikasi ini dibuat untuk mempermudah pemahaman tentang konsep dasar aljabar linear
+    dan penerapannya pada pengolahan citra digital. Dengan aplikasi ini, pengguna dapat
+    melakukan manipulasi gambar seperti rotasi, skalasi, translasi, skewing, dan lainnya
+    secara interaktif. Alat ini cocok digunakan oleh pelajar, pengajar, maupun profesional
+    yang ingin mempelajari atau memanfaatkan aljabar linear dalam dunia komputasi.</p>
+    """, unsafe_allow_html=True)
+
+elif st.session_state.menu == "Pengembang":
     st.markdown("<h1 style='text-align: center; font-size: 48px;'>PENGEMBANG</h1>", unsafe_allow_html=True)
     st.markdown("<h2 style='text-align: center; font-size: 24px;'>MUHAMMAD FIKRY HAIKAL</h2>", unsafe_allow_html=True)
 
     # Menambahkan foto pengembang dari file lokal
     st.image("fikry.jpg", caption="Foto Muhammad Fikry Haikal", use_container_width=True)
+
+    # Menambahkan kontak
+    st.markdown("""
+    <h3>Contact</h3>
+    <ul>
+        <li><b>Instagram:</b> fikrykl_</li>
+        <li><b>Email:</b> fikryhaikall07@gmail.com</li>
+    </ul>
+    """, unsafe_allow_html=True)
 
 elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
     st.title("Aplikasi Manipulasi Gambar")
@@ -59,6 +80,11 @@ elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
             skew_matrix = np.float32([[1, skew_x, 0], [skew_y, 1, 0]])
             skewed_image = cv2.warpAffine(image, skew_matrix, (int(cols * 1.5), int(rows * 1.5)))
             st.image(skewed_image, caption=f"Skewed Image (Skew X: {skew_x}, Skew Y: {skew_y})", channels="BGR", use_container_width=True)
+
+            # Slider untuk brightness
+            brightness = st.slider("Brightness", min_value=-100, max_value=100, value=0)
+            bright_image = cv2.convertScaleAbs(image, alpha=1, beta=brightness)
+            st.image(bright_image, caption=f"Brightness Adjusted (Value: {brightness})", channels="BGR", use_container_width=True)
 
         else:
             st.error("Error: Uploaded file is not a valid image.")
