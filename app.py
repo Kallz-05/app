@@ -11,9 +11,10 @@ st.sidebar.title("Menu")
 st.session_state.menu = st.sidebar.radio("", ["Home", "Pengembang", "Aplikasi Manipulasi Gambar"], index=0)
 
 # Logika menu
-if st.session_state.menu == "Home":
-    # Menampilkan gambar PU.png di menu Home
-    st.image("PU.png", caption="", use_container_width=True)
+# Menampilkan gambar PU.png di menu Home dengan ukuran setengah dan posisi di tengah
+st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
+st.image("PU.png", caption="", use_container_width=False, width=250)  # Mengatur lebar gambar
+st.markdown("</div>", unsafe_allow_html=True)
 
     # Menampilkan judul Linear Algebra
     st.markdown("<h1 style='text-align: center; font-size: 48px;'>Linear Algebra</h1>", unsafe_allow_html=True)
