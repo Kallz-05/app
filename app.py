@@ -21,7 +21,6 @@ if st.session_state.menu == "Home":
     # Menampilkan deskripsi aplikasi
     st.markdown("""
     <p style="text-align: justify; font-size: 18px;">
-    Selamat datang di <strong>Linear Algebra</strong> – sebuah aplikasi inovatif untuk eksplorasi manipulasi gambar! 
     
     Aplikasi ini dirancang untuk mempermudah Anda memahami dan mengaplikasikan konsep pengolahan citra digital secara interaktif. Dengan antarmuka yang ramah pengguna, Anda dapat dengan mudah mengunggah gambar dan bereksperimen dengan berbagai transformasi, seperti:
     </p>
@@ -37,11 +36,6 @@ if st.session_state.menu == "Home":
     <p style="text-align: justify; font-size: 18px;">
     Aplikasi ini memanfaatkan pustaka Python populer seperti OpenCV untuk pengolahan gambar dan Streamlit untuk antarmuka web, sehingga cocok digunakan oleh pemula hingga profesional. Cocok untuk pembelajaran, eksperimen, atau bahkan sebagai inspirasi proyek pemrograman Anda berikutnya!
     </p>
-
-    <p style="text-align: center; font-size: 18px;">
-    Mari eksplorasi dunia pengolahan citra dengan cara yang menyenangkan dan intuitif! 😊
-    </p>
-    """, unsafe_allow_html=True)
 
 elif st.session_state.menu == "Pengembang":
     st.markdown("<h1 style='text-align: center; font-size: 48px;'>PENGEMBANG</h1>", unsafe_allow_html=True)
