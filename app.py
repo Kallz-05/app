@@ -12,41 +12,49 @@ st.session_state.menu = st.sidebar.radio("", ["Home", "Pengembang", "Aplikasi Ma
 
 # Logika menu
 if st.session_state.menu == "Home":
-    # Menampilkan gambar PU.png di menu Home dengan posisi tengah
-    st.markdown("""
-    <div style="text-align: center;">
-        <img src="PU.png" alt="PU Logo" style="width:50%;">
-    </div>
-    """, unsafe_allow_html=True)
+    # Menampilkan gambar PU.png di menu Home di tengah
+    st.markdown(
+        """
+        <div style="display: flex; justify-content: center;">
+            <img src="PU.png" alt="PU Logo" style="width: 50%; height: auto;" />
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
     # Menampilkan judul Linear Algebra
     st.markdown("<h1 style='text-align: center; font-size: 48px;'>Linear Algebra</h1>", unsafe_allow_html=True)
 
-    # Menampilkan deskripsi aplikasi dengan teks justify
-    st.markdown("""
-    <p style="text-align: justify; font-size: 18px;">
-    Aplikasi ini dirancang untuk mempermudah memahami dan mengaplikasikan konsep pengolahan citra digital secara interaktif. Dengan antarmuka yang ramah pengguna, Anda dapat dengan mudah mengunggah gambar dan bereksperimen dengan berbagai transformasi, seperti:
-    </p>
-
-    <ul style="font-size: 18px;">
-        <li><strong>Rotasi</strong>: Memutar gambar dengan sudut yang dapat disesuaikan.</li>
-        <li><strong>Brightness</strong>: Mengubah tingkat kecerahan gambar, dari gelap sepenuhnya hingga sangat terang.</li>
-        <li><strong>Skala</strong>: Memperbesar atau memperkecil ukuran gambar tanpa mengurangi kualitas.</li>
-        <li><strong>Translasi</strong>: Menggeser posisi gambar secara horizontal atau vertikal.</li>
-        <li><strong>Skewing</strong>: Menerapkan distorsi untuk menciptakan efek miring yang menarik.</li>
-    </ul>
-    """, unsafe_allow_html=True)
+    # Menampilkan deskripsi aplikasi
+    st.markdown(
+        """
+        <p style="text-align: justify; font-size: 18px;">
+        Aplikasi ini dirancang untuk mempermudah memahami dan mengaplikasikan konsep pengolahan citra digital secara interaktif. Dengan antarmuka yang ramah pengguna, Anda dapat dengan mudah mengunggah gambar dan bereksperimen dengan berbagai transformasi, seperti:
+        </p>
+        <ul style="font-size: 18px;">
+            <li><strong>Rotasi</strong>: Memutar gambar dengan sudut yang dapat disesuaikan.</li>
+            <li><strong>Brightness</strong>: Mengubah tingkat kecerahan gambar, dari gelap sepenuhnya hingga sangat terang.</li>
+            <li><strong>Skala</strong>: Memperbesar atau memperkecil ukuran gambar tanpa mengurangi kualitas.</li>
+            <li><strong>Translasi</strong>: Menggeser posisi gambar secara horizontal atau vertikal.</li>
+            <li><strong>Skewing</strong>: Menerapkan distorsi untuk menciptakan efek miring yang menarik.</li>
+        </ul>
+        """,
+        unsafe_allow_html=True,
+    )
 
 elif st.session_state.menu == "Pengembang":
     st.markdown("<h1 style='text-align: center; font-size: 48px;'>PENGEMBANG</h1>", unsafe_allow_html=True)
     st.markdown("<h2 style='text-align: center; font-size: 24px;'>MUHAMMAD FIKRY HAIKAL</h2>", unsafe_allow_html=True)
 
-    # Menampilkan foto pengembang dari file lokal dengan posisi tengah
-    st.markdown("""
-    <div style="text-align: center;">
-        <img src="fikry.jpg" alt="Foto Pengembang" style="width:50%;">
-    </div>
-    """, unsafe_allow_html=True)
+    # Menambahkan foto pengembang di tengah
+    st.markdown(
+        """
+        <div style="display: flex; justify-content: center;">
+            <img src="fikry.jpg" alt="Foto Pengembang" style="width: 50%; height: auto;" />
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
     # Kontak pengembang
     st.markdown("<h3>Contact:</h3>", unsafe_allow_html=True)
