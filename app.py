@@ -32,10 +32,6 @@ if st.session_state.menu == "Home":
         <li><strong>Translasi</strong>: Menggeser posisi gambar secara horizontal atau vertikal.</li>
         <li><strong>Skewing</strong>: Menerapkan distorsi untuk menciptakan efek miring yang menarik.</li>
     </ul>
-
-    <p style="text-align: justify; font-size: 18px;">
-    Aplikasi ini memanfaatkan pustaka Python populer seperti OpenCV untuk pengolahan gambar dan Streamlit untuk antarmuka web, sehingga cocok digunakan oleh pemula hingga profesional. Cocok untuk pembelajaran, eksperimen, atau bahkan sebagai inspirasi proyek pemrograman Anda berikutnya!
-    </p>
     """, unsafe_allow_html=True)
 
 elif st.session_state.menu == "Pengembang":
