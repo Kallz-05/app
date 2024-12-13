@@ -12,16 +12,8 @@ st.session_state.menu = st.sidebar.radio("", ["Home", "Pengembang", "Aplikasi Ma
 
 # Logika menu
 if st.session_state.menu == "Home":
-    st.markdown("<h1 style='text-align: center; font-size: 48px;'>Linear Algebra</h1>", unsafe_allow_html=True)
-    st.image("PU.png", caption="Gambar PU", use_container_width=True)
-    st.markdown("""
-    <h2>Deskripsi</h2>
-    <p>Aplikasi ini dibuat untuk mempermudah pemahaman tentang konsep dasar aljabar linear
-    dan penerapannya pada pengolahan citra digital. Dengan aplikasi ini, pengguna dapat
-    melakukan manipulasi gambar seperti rotasi, skalasi, translasi, skewing, dan lainnya
-    secara interaktif. Alat ini cocok digunakan oleh pelajar, pengajar, maupun profesional
-    yang ingin mempelajari atau memanfaatkan aljabar linear dalam dunia komputasi.</p>
-    """, unsafe_allow_html=True)
+    # Menampilkan gambar PU.png di menu Home
+    st.image("PU.png", caption="", use_container_width=True)
 
 elif st.session_state.menu == "Pengembang":
     st.markdown("<h1 style='text-align: center; font-size: 48px;'>PENGEMBANG</h1>", unsafe_allow_html=True)
@@ -30,14 +22,10 @@ elif st.session_state.menu == "Pengembang":
     # Menambahkan foto pengembang dari file lokal
     st.image("fikry.jpg", caption="Foto Muhammad Fikry Haikal", use_container_width=True)
 
-    # Menambahkan kontak
-    st.markdown("""
-    <h3>Contact</h3>
-    <ul>
-        <li><b>Instagram:</b> fikrykl_</li>
-        <li><b>Email:</b> fikryhaikall07@gmail.com</li>
-    </ul>
-    """, unsafe_allow_html=True)
+    # Kontak pengembang
+    st.markdown("<h3>Contact:</h3>", unsafe_allow_html=True)
+    st.markdown("- Instagram: [fikrykl_](https://www.instagram.com/fikrykl_)")
+    st.markdown("- Email: fikryhaikall07@gmail.com")
 
 elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
     st.title("Aplikasi Manipulasi Gambar")
@@ -62,8 +50,13 @@ elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
             rotated_image = cv2.warpAffine(image, rotation_matrix, (cols, rows))
             st.image(rotated_image, caption=f"Rotated Image (Angle: {angle}°)", channels="BGR", use_container_width=True)
 
+            # Slider untuk brightness
+            brightness = st.slider("Brightness", min_value=-100, max_value=100, value=0)
+            bright_image = cv2.convertScaleAbs(image, alpha=1, beta=brightness)
+            st.image(bright_image, caption=f"Brightness Adjusted (Value: {brightness})", channels="BGR", use_container_width=True)
+
             # Slider untuk memperbesar dan memperkecil gambar
-            scale_factor = st.slider("Scale Factor", min_value=0.1, max_value=2.0, value=0.4, step=0.1)
+            scale_factor = st.slider("Scale Factor", min_value=0.1, max_value=3.0, value=1.0, step=0.1)
             scaled_image = cv2.resize(image, None, fx=scale_factor, fy=scale_factor, interpolation=cv2.INTER_LINEAR)
             st.image(scaled_image, caption=f"Scaled Image (Factor: {scale_factor})", channels="BGR")
 
@@ -75,16 +68,11 @@ elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
             st.image(translated_image, caption=f"Translated Image (Tx: {tx}, Ty: {ty})", channels="BGR", use_container_width=True)
 
             # Slider untuk skewing
-            skew_x = st.slider("Skew X", min_value=-1.0, max_value=1.0, value=0.5, step=0.1)
-            skew_y = st.slider("Skew Y", min_value=-1.0, max_value=1.0, value=0.5, step=0.1)
+            skew_x = st.slider("Skew X", min_value=-1.0, max_value=1.0, value=0.0, step=0.1)
+            skew_y = st.slider("Skew Y", min_value=-1.0, max_value=1.0, value=0.0, step=0.1)
             skew_matrix = np.float32([[1, skew_x, 0], [skew_y, 1, 0]])
             skewed_image = cv2.warpAffine(image, skew_matrix, (int(cols * 1.5), int(rows * 1.5)))
             st.image(skewed_image, caption=f"Skewed Image (Skew X: {skew_x}, Skew Y: {skew_y})", channels="BGR", use_container_width=True)
-
-            # Slider untuk brightness
-            brightness = st.slider("Brightness", min_value=-100, max_value=100, value=0)
-            bright_image = cv2.convertScaleAbs(image, alpha=1, beta=brightness)
-            st.image(bright_image, caption=f"Brightness Adjusted (Value: {brightness})", channels="BGR", use_container_width=True)
 
         else:
             st.error("Error: Uploaded file is not a valid image.")
