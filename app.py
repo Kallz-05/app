@@ -16,9 +16,7 @@ if st.session_state.menu == "Home":
     st.image("PU.png", caption="", use_container_width=True)
 
     # Menampilkan judul Linear Algebra
-    st.markdown("""
-    <h1 style='text-align: center; font-size: 48px;'>Linear Algebra</h1>
-    """, unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; font-size: 48px;'>Linear Algebra</h1>", unsafe_allow_html=True)
 
     # Menampilkan deskripsi aplikasi
     st.markdown("""
@@ -36,20 +34,14 @@ if st.session_state.menu == "Home":
     """, unsafe_allow_html=True)
 
 elif st.session_state.menu == "Pengembang":
-    st.markdown("""
-    <h1 style='text-align: center; font-size: 48px;'>PENGEMBANG</h1>
-    """, unsafe_allow_html=True)
-    st.markdown("""
-    <h2 style='text-align: center; font-size: 24px;'>MUHAMMAD FIKRY HAIKAL</h2>
-    """, unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; font-size: 48px;'>PENGEMBANG</h1>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; font-size: 24px;'>MUHAMMAD FIKRY HAIKAL</h2>", unsafe_allow_html=True)
 
     # Menambahkan foto pengembang dari file lokal
     st.image("fikry.jpg", caption="Foto Muhammad Fikry Haikal", use_container_width=True)
 
     # Kontak pengembang
-    st.markdown("""
-    <h3>Contact:</h3>
-    """, unsafe_allow_html=True)
+    st.markdown("<h3>Contact:</h3>", unsafe_allow_html=True)
     st.markdown("- Instagram: [fikryhkl_](https://www.instagram.com/fikryhkl_)")
     st.markdown("- Email: fikryhaikall07@gmail.com")
 
@@ -77,11 +69,14 @@ elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
             st.image(rotated_image, caption=f"Rotated Image (Angle: {angle}°)", channels="BGR", use_container_width=True)
 
             # Slider untuk brightness
-            brightness = st.slider("Brightness", min_value=-100, max_value=100, value=0)
-            if brightness == -100:
-                bright_image = np.zeros_like(image)  # Buat gambar hitam
+            brightness = st.slider("Brightness", min_value=-255, max_value=255, value=0)
+
+            # Adjust brightness
+            if brightness < 0:
+                bright_image = np.clip(image + brightness, 0, 255).astype(np.uint8)
             else:
-                bright_image = cv2.convertScaleAbs(image, alpha=1, beta=brightness)
+                bright_image = np.clip(image + brightness, 0, 255).astype(np.uint8)
+
             st.image(bright_image, caption=f"Brightness Adjusted (Value: {brightness})", channels="BGR", use_container_width=True)
 
             # Slider untuk memperbesar dan memperkecil gambar
