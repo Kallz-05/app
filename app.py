@@ -36,6 +36,7 @@ if st.session_state.menu == "Home":
     <p style="text-align: justify; font-size: 18px;">
     Aplikasi ini memanfaatkan pustaka Python populer seperti OpenCV untuk pengolahan gambar dan Streamlit untuk antarmuka web, sehingga cocok digunakan oleh pemula hingga profesional. Cocok untuk pembelajaran, eksperimen, atau bahkan sebagai inspirasi proyek pemrograman Anda berikutnya!
     </p>
+    """, unsafe_allow_html=True)
 
 elif st.session_state.menu == "Pengembang":
     st.markdown("<h1 style='text-align: center; font-size: 48px;'>PENGEMBANG</h1>", unsafe_allow_html=True)
@@ -46,7 +47,7 @@ elif st.session_state.menu == "Pengembang":
 
     # Kontak pengembang
     st.markdown("<h3>Contact:</h3>", unsafe_allow_html=True)
-    st.markdown("- Instagram: [fikryhkl_](https://www.instagram.com/fikryhkl_)")
+    st.markdown("- Instagram: [fikrykl_](https://www.instagram.com/fikrykl_)")
     st.markdown("- Email: fikryhaikall07@gmail.com")
 
 elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
