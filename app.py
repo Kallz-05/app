@@ -15,6 +15,34 @@ if st.session_state.menu == "Home":
     # Menampilkan gambar PU.png di menu Home
     st.image("PU.png", caption="", use_container_width=True)
 
+    # Menampilkan judul Linear Algebra
+    st.markdown("<h1 style='text-align: center; font-size: 48px;'>Linear Algebra</h1>", unsafe_allow_html=True)
+
+    # Menampilkan deskripsi aplikasi
+    st.markdown("""
+    <p style="text-align: justify; font-size: 18px;">
+    Selamat datang di <strong>Linear Algebra</strong> – sebuah aplikasi inovatif untuk eksplorasi manipulasi gambar! 
+    
+    Aplikasi ini dirancang untuk mempermudah Anda memahami dan mengaplikasikan konsep pengolahan citra digital secara interaktif. Dengan antarmuka yang ramah pengguna, Anda dapat dengan mudah mengunggah gambar dan bereksperimen dengan berbagai transformasi, seperti:
+    </p>
+
+    <ul style="font-size: 18px;">
+        <li><strong>Rotasi</strong>: Memutar gambar dengan sudut yang dapat disesuaikan.</li>
+        <li><strong>Brightness</strong>: Mengubah tingkat kecerahan gambar, dari gelap sepenuhnya hingga sangat terang.</li>
+        <li><strong>Skala</strong>: Memperbesar atau memperkecil ukuran gambar tanpa mengurangi kualitas.</li>
+        <li><strong>Translasi</strong>: Menggeser posisi gambar secara horizontal atau vertikal.</li>
+        <li><strong>Skewing</strong>: Menerapkan distorsi untuk menciptakan efek miring yang menarik.</li>
+    </ul>
+
+    <p style="text-align: justify; font-size: 18px;">
+    Aplikasi ini memanfaatkan pustaka Python populer seperti OpenCV untuk pengolahan gambar dan Streamlit untuk antarmuka web, sehingga cocok digunakan oleh pemula hingga profesional. Cocok untuk pembelajaran, eksperimen, atau bahkan sebagai inspirasi proyek pemrograman Anda berikutnya!
+    </p>
+
+    <p style="text-align: center; font-size: 18px;">
+    Mari eksplorasi dunia pengolahan citra dengan cara yang menyenangkan dan intuitif! 😊
+    </p>
+    """, unsafe_allow_html=True)
+
 elif st.session_state.menu == "Pengembang":
     st.markdown("<h1 style='text-align: center; font-size: 48px;'>PENGEMBANG</h1>", unsafe_allow_html=True)
     st.markdown("<h2 style='text-align: center; font-size: 24px;'>MUHAMMAD FIKRY HAIKAL</h2>", unsafe_allow_html=True)
@@ -24,7 +52,7 @@ elif st.session_state.menu == "Pengembang":
 
     # Kontak pengembang
     st.markdown("<h3>Contact:</h3>", unsafe_allow_html=True)
-    st.markdown("- Instagram: [fikrykl_](https://www.instagram.com/fikrykl_)")
+    st.markdown("- Instagram: [fikryhkl_](https://www.instagram.com/fikryhkl_)")
     st.markdown("- Email: fikryhaikall07@gmail.com")
 
 elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
