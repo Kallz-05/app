@@ -12,8 +12,8 @@ st.session_state.menu = st.sidebar.radio("", ["Home", "Pengembang", "Aplikasi Ma
 
 # Logika menu
 if st.session_state.menu == "Home":
-    # Menampilkan gambar PU.png di menu Home
-    st.image("PU.png", caption="", use_container_width=True)
+    # Menampilkan gambar PU.png di menu Home dengan ukuran setengah dari aslinya
+    st.image("PU.png", caption="", use_container_width=False, width=400)
 
     # Menampilkan judul Linear Algebra
     st.markdown("<h1 style='text-align: center; font-size: 48px;'>Linear Algebra</h1>", unsafe_allow_html=True)
@@ -26,7 +26,7 @@ if st.session_state.menu == "Home":
 
     <ul style="font-size: 18px;">
         <li><strong>Rotasi</strong>: Memutar gambar dengan sudut yang dapat disesuaikan.</li>
-        <li><strong>Brightness</strong>: Mengubah tingkat kecerahan gambar, dari gelap sepenuhnya hingga sangat terang.</li>
+        <li><strong>Brightness</strong>: Mengubah tingkat kecerahan gambar dari gelap sepenuhnya hingga sangat terang.</li>
         <li><strong>Skala</strong>: Memperbesar atau memperkecil ukuran gambar tanpa mengurangi kualitas.</li>
         <li><strong>Translasi</strong>: Menggeser posisi gambar secara horizontal atau vertikal.</li>
         <li><strong>Skewing</strong>: Menerapkan distorsi untuk menciptakan efek miring yang menarik.</li>
@@ -37,8 +37,8 @@ elif st.session_state.menu == "Pengembang":
     st.markdown("<h1 style='text-align: center; font-size: 48px;'>PENGEMBANG</h1>", unsafe_allow_html=True)
     st.markdown("<h2 style='text-align: center; font-size: 24px;'>MUHAMMAD FIKRY HAIKAL</h2>", unsafe_allow_html=True)
 
-    # Menambahkan foto pengembang dari file lokal
-    st.image("fikry.jpg", caption="Foto Muhammad Fikry Haikal", use_container_width=True)
+    # Menambahkan foto pengembang dari file lokal dengan ukuran setengah
+    st.image("fikry.jpg", caption="Foto Muhammad Fikry Haikal", use_container_width=False, width=200)
 
     # Kontak pengembang
     st.markdown("<h3>Contact:</h3>", unsafe_allow_html=True)
@@ -69,14 +69,10 @@ elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
             st.image(rotated_image, caption=f"Rotated Image (Angle: {angle}°)", channels="BGR", use_container_width=True)
 
             # Slider untuk brightness
-            brightness = st.slider("Brightness", min_value=-255, max_value=255, value=0)
+            brightness = st.slider("Brightness", min_value=0, max_value=100, value=50)
 
-            # Adjust brightness
-            if brightness < 0:
-                bright_image = np.clip(image + brightness, 0, 255).astype(np.uint8)
-            else:
-                bright_image = np.clip(image + brightness, 0, 255).astype(np.uint8)
-
+            # Adjust brightness dengan pengaturan gelap-terang
+            bright_image = cv2.convertScaleAbs(image, alpha=1, beta=brightness - 50)
             st.image(bright_image, caption=f"Brightness Adjusted (Value: {brightness})", channels="BGR", use_container_width=True)
 
             # Slider untuk memperbesar dan memperkecil gambar
