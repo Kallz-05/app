@@ -89,15 +89,16 @@ elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
 
 
             # Slider untuk memperbesar dan memperkecil gambar
-            scale_factor = st.slider("Scale Factor", min_value=0.1, max_value=2.0, value=0.4, step=0.1)
+            scale_factor = st.slider("Scale Factor", min_value=0.1, max_value=2.0, value=1.0, step=0.1)
             
+            # Menghitung ukuran baru berdasarkan scale factor
+            new_width = int(original_width * scale_factor)
+            new_height = int(original_height * scale_factor)
             # Memilih interpolasi berdasarkan kondisi
             interpolation = cv2.INTER_CUBIC if scale_factor > 1 else cv2.INTER_AREA
-            
-            # Resize gambar
-            scaled_image = cv2.resize(image, None, fx=scale_factor, fy=scale_factor, interpolation=interpolation)
-            
-            # Menampilkan gambar
+            # Resize gambar sesuai ukuran baru
+            scaled_image = cv2.resize(image, (new_width, new_height), interpolation=interpolation)
+            # Menampilkan gambar yang sudah diskalakan
             st.image(scaled_image, caption=f"Scaled Image (Factor: {scale_factor})", channels="BGR")
 
             # Slider untuk translasi
