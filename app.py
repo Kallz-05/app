@@ -72,14 +72,19 @@ elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
             rotated_image = cv2.warpAffine(image, rotation_matrix, (cols, rows))
             st.image(rotated_image, caption=f"Rotated Image (Angle: {angle}°)", channels="BGR", use_container_width=True)
 
-            # Slider untuk brightness
+            # Brightness adjustment menggunakan konversi aman
             brightness = st.slider("Brightness (From Dark to Light)", min_value=-100, max_value=100, value=0)
             
-            # Adjust brightness menggunakan alpha = 1.0 (kontras tetap) dan beta (brightness)
-            bright_image = cv2.convertScaleAbs(image, alpha=1.0, beta=brightness)
+            # Normalisasi nilai brightness (scaling)
+            alpha = 1.0  # Kontras tetap
+            beta = brightness  # Brightness level
             
-            # Menampilkan gambar hasil brightness
+            # Normalisasi brightness dengan memaksa nilai piksel tetap dalam rentang aman (0-255)
+            bright_image = np.clip(image.astype(np.int32) + beta, 0, 255).astype(np.uint8)
+            
+            # Menampilkan hasil
             st.image(bright_image, caption=f"Brightness Adjusted (Value: {brightness})", channels="BGR", use_container_width=True)
+
 
             # Slider untuk memperbesar dan memperkecil gambar
             scale_factor = st.slider("Scale Factor", min_value=0.1, max_value=3.0, value=1.0, step=0.1)
