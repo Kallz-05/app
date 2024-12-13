@@ -22,7 +22,7 @@ if st.session_state.menu == "Home":
     st.markdown("""
     <p style="text-align: justify; font-size: 18px;">
     
-    Aplikasi ini dirancang untuk mempermudah Anda memahami dan mengaplikasikan konsep pengolahan citra digital secara interaktif. Dengan antarmuka yang ramah pengguna, Anda dapat dengan mudah mengunggah gambar dan bereksperimen dengan berbagai transformasi, seperti:
+    Aplikasi ini dirancang untuk mempermudah memahami dan mengaplikasikan konsep pengolahan citra digital secara interaktif. Dengan antarmuka yang ramah pengguna, Anda dapat dengan mudah mengunggah gambar dan bereksperimen dengan berbagai transformasi, seperti:
     </p>
 
     <ul style="font-size: 18px;">
@@ -43,7 +43,7 @@ elif st.session_state.menu == "Pengembang":
 
     # Kontak pengembang
     st.markdown("<h3>Contact:</h3>", unsafe_allow_html=True)
-    st.markdown("- Instagram: [fikrykl_](https://www.instagram.com/fikrykl_)")
+    st.markdown("- Instagram: [fikryhkl_](https://www.instagram.com/fikryhkl_)")
     st.markdown("- Email: fikryhaikall07@gmail.com")
 
 elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
