@@ -12,8 +12,8 @@ st.session_state.menu = st.sidebar.radio("", ["Home", "Pengembang", "Aplikasi Ma
 
 # Logika menu
 if st.session_state.menu == "Home":
-    # Menampilkan gambar PU.png di menu Home
-    st.image("PU.png", caption="", use_container_width=True)
+    # Menampilkan gambar PU.png di menu Home dengan ukuran setengah dari aslinya
+    st.image("PU.png", caption="", use_container_width=False, width=400)
 
     # Menampilkan judul Linear Algebra
     st.markdown("<h1 style='text-align: center; font-size: 48px;'>Linear Algebra</h1>", unsafe_allow_html=True)
@@ -26,7 +26,7 @@ if st.session_state.menu == "Home":
 
     <ul style="font-size: 18px;">
         <li><strong>Rotasi</strong>: Memutar gambar dengan sudut yang dapat disesuaikan.</li>
-        <li><strong>Brightness</strong>: Mengubah tingkat kecerahan gambar, dari gelap sepenuhnya hingga sangat terang.</li>
+        <li><strong>Brightness</strong>: Mengubah tingkat kecerahan gambar dari gelap sepenuhnya hingga sangat terang.</li>
         <li><strong>Skala</strong>: Memperbesar atau memperkecil ukuran gambar tanpa mengurangi kualitas.</li>
         <li><strong>Translasi</strong>: Menggeser posisi gambar secara horizontal atau vertikal.</li>
         <li><strong>Skewing</strong>: Menerapkan distorsi untuk menciptakan efek miring yang menarik.</li>
@@ -35,14 +35,10 @@ if st.session_state.menu == "Home":
 
 elif st.session_state.menu == "Pengembang":
     st.markdown("<h1 style='text-align: center; font-size: 48px;'>PENGEMBANG</h1>", unsafe_allow_html=True)
-    
-    # Menambahkan foto pengembang di tengah
-    col1, col2, col3 = st.columns([1, 3, 1])  # Mengatur posisi gambar di tengah
-    with col2:
-        st.image("fikry.jpg", caption="", use_container_width=True)
+    st.markdown("<h2 style='text-align: center; font-size: 24px;'>MUHAMMAD FIKRY HAIKAL</h2>", unsafe_allow_html=True)
 
-    # Menampilkan nama pengembang di bawah foto
-    st.markdown("<h2 style='text-align: center; font-size: 24px;'>Muhammad Fikry Haikal</h2>", unsafe_allow_html=True)
+    # Menambahkan foto pengembang dari file lokal dengan ukuran setengah
+    st.image("fikry.jpg", caption="Foto Muhammad Fikry Haikal", use_container_width=False, width=200)
 
     # Kontak pengembang
     st.markdown("<h3>Contact:</h3>", unsafe_allow_html=True)
