@@ -17,7 +17,7 @@ if st.session_state.menu == "Home":
     # Menampilkan gambar PU.png di menu Home dengan ukuran setengah dan posisi di tengah
     col1, col2, col3 = st.columns([1, 2, 1])  # Kolom untuk memposisikan gambar di tengah
     with col2:
-        st.image("PU.png", caption="", use_column_width=True)
+        st.image("PU.png", caption="", use_container_width=True)
 
     # Menampilkan judul Linear Algebra
     st.markdown("<h1 style='text-align: center; font-size: 48px;'>Linear Algebra</h1>", unsafe_allow_html=True)
