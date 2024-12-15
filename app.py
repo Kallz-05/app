@@ -1,6 +1,7 @@
 import streamlit as st
 import cv2
 import numpy as np
+import io
 
 # Inisialisasi session state untuk menu
 if 'menu' not in st.session_state:
@@ -33,7 +34,6 @@ if st.session_state.menu == "Home":
         <li><strong>Skewing</strong>: Menerapkan distorsi untuk menciptakan efek miring yang menarik.</li>
     </ul>
     """, unsafe_allow_html=True)
-
 
 elif st.session_state.menu == "Pengembang":
     st.markdown("<h1 style='text-align: center; font-size: 48px;'>PENGEMBANG</h1>", unsafe_allow_html=True)
@@ -73,6 +73,9 @@ elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
             rotation_matrix = cv2.getRotationMatrix2D((cols / 2, rows / 2), angle, 1)
             rotated_image = cv2.warpAffine(image, rotation_matrix, (cols, rows))
             st.image(rotated_image, caption=f"Rotated Image (Angle: {angle}°)", channels="BGR", use_container_width=True)
+            # Tombol unduh gambar hasil rotasi
+            _, buffer = cv2.imencode('.png', rotated_image)
+            st.download_button("Download Rotated Image", buffer.tobytes(), file_name="rotated_image.png", mime="image/png")
 
             # Brightness adjustment menggunakan konversi aman
             brightness = st.slider("Brightness (From Dark to Light)", min_value=-100, max_value=100, value=0)
@@ -86,12 +89,18 @@ elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
             
             # Menampilkan hasil
             st.image(bright_image, caption=f"Brightness Adjusted (Value: {brightness})", channels="BGR", use_container_width=True)
+            # Tombol unduh gambar hasil brightness
+            _, buffer = cv2.imencode('.png', bright_image)
+            st.download_button("Download Brightness Adjusted Image", buffer.tobytes(), file_name="brightness_adjusted_image.png", mime="image/png")
 
-
-            # Slider untuk memperbesar dan memperkecil gambar
-            scale_factor = st.slider("Scale Factor", min_value=0.1, max_value=2.0, value=0.4, step=0.1)
-            scaled_image = cv2.resize(image, None, fx=scale_factor, fy=scale_factor, interpolation=cv2.INTER_LINEAR)
-            st.image(scaled_image, caption=f"Scaled Image (Factor: {scale_factor})", channels="BGR")
+            # Slider untuk memperbesar dan memperkecil gambar secara terpisah (X dan Y)
+            scale_x = st.slider("Scale X Factor", min_value=0.1, max_value=2.0, value=1.0, step=0.1)
+            scale_y = st.slider("Scale Y Factor", min_value=0.1, max_value=2.0, value=1.0, step=0.1)
+            scaled_image = cv2.resize(image, None, fx=scale_x, fy=scale_y, interpolation=cv2.INTER_LINEAR)
+            st.image(scaled_image, caption=f"Scaled Image (X: {scale_x}, Y: {scale_y})", channels="BGR")
+            # Tombol unduh gambar hasil skala
+            _, buffer = cv2.imencode('.png', scaled_image)
+            st.download_button("Download Scaled Image", buffer.tobytes(), file_name="scaled_image.png", mime="image/png")
 
             # Slider untuk translasi
             tx = st.slider("Translation X", min_value=-100, max_value=100, value=50)
@@ -99,6 +108,9 @@ elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
             translation_matrix = np.float32([[1, 0, tx], [0, 1, ty]])
             translated_image = cv2.warpAffine(image, translation_matrix, (cols, rows))
             st.image(translated_image, caption=f"Translated Image (Tx: {tx}, Ty: {ty})", channels="BGR", use_container_width=True)
+            # Tombol unduh gambar hasil translasi
+            _, buffer = cv2.imencode('.png', translated_image)
+            st.download_button("Download Translated Image", buffer.tobytes(), file_name="translated_image.png", mime="image/png")
 
             # Slider untuk skewing
             skew_x = st.slider("Skew X", min_value=-1.0, max_value=1.0, value=0.0, step=0.1)
@@ -106,6 +118,9 @@ elif st.session_state.menu == "Aplikasi Manipulasi Gambar":
             skew_matrix = np.float32([[1, skew_x, 0], [skew_y, 1, 0]])
             skewed_image = cv2.warpAffine(image, skew_matrix, (int(cols * 1.5), int(rows * 1.5)))
             st.image(skewed_image, caption=f"Skewed Image (Skew X: {skew_x}, Skew Y: {skew_y})", channels="BGR", use_container_width=True)
+            # Tombol unduh gambar hasil skewing
+            _, buffer = cv2.imencode('.png', skewed_image)
+            st.download_button("Download Skewed Image", buffer.tobytes(), file_name="skewed_image.png", mime="image/png")
 
         else:
             st.error("Error: Uploaded file is not a valid image.")
